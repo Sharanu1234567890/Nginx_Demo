@@ -1,0 +1,16 @@
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    depends_on:
+      - user-service
+      - order-service
+
+  user-service:
+    build: ./user-service   # <-- fix spelling, was user-serivce
+
+  order-service:
+    build: ./order-service
